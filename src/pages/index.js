@@ -49,11 +49,16 @@ export default function Home() {
               <li>⚡ 语法极简：无需写 JavaScript 或 HTML</li>
               <li>🪄 原生支持 Python / Lua 脚本嵌入与交互</li>
               <li>🔁 完整控制流：支持 if / for / break / continue</li>
-              <li>🎯 元编程 + 数据绑定 + 模板渲染 引擎</li>
+              <li>🎯 事件驱动 + 数据绑定 + 模板渲染 引擎</li>
             </ul>
-            <p style={{ marginTop: '1rem' }}>
-              👉 想了解更多？查看 <a href="/docs/intro">使用文档</a> 或访问 <a href="https://github.com/lvzhiyuan/Yuml-docs" target="_blank" rel="noopener noreferrer">GitHub 仓库</a>
-            </p>
+
+            <div style={{marginTop: '2rem', textAlign: 'center'}}>
+              <Link
+                className="button button--primary button--lg"
+                to="/docs/intro">
+                🚀 开始吧！
+              </Link>
+            </div>
           </div>
         </section>
       </main>
