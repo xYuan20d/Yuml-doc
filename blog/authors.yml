@@ -23,3 +23,14 @@ slorber:
     linkedin: sebastienlorber
     github: slorber
     newsletter: https://thisweekinreact.com
+
+yuan:
+  name: YuanYuan
+  title: Yuml 语言作者
+  url: https://github.com/xYuan20d
+  image_url: https://github.com/xYuan20d.png
+  socials:                     # 可选，社交链接
+    github: xYuan20d
+  
+  page:                        # 可选，自定义作者专属页面 URL
+    permalink: '/YuanYuan'

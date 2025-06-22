@@ -41,7 +41,7 @@ const config = {
         },
         blog: {
           showReadingTime: true,
-          editUrl: 'https://github.com/xYuan20d/Yuml-doc/edit/main/blog/',
+          editUrl: 'https://github.com/xYuan20d/Yuml-doc/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -64,6 +64,11 @@ const config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: '文档',
+        },
+        {
+          to: '/blog',         // ✅ 博客入口路径
+          label: '动态',
+          position: 'left',     // 显示在左边（靠近“文档”）
         },
         {
           href: 'https://github.com/xYuan20d/Yuml', // ✅ 指向源码仓库
@@ -101,6 +106,25 @@ const config = {
       darkTheme: prismThemes.dracula,
     },
   },
+  scripts: [
+    {
+      src: '/js/particles.js',
+      async: true,
+      defer: true,
+    },
+  ],
 };
+
+config.plugins = [
+  [
+    require.resolve('docusaurus-plugin-search-local'),
+    {
+      hashed: true,
+      indexDocs: true,
+      indexBlog: true,
+      indexPages: true,
+    },
+  ],
+];
 
 export default config;

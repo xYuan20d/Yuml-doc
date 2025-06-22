@@ -5,7 +5,7 @@ import Layout from '@theme/Layout';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
@@ -17,6 +17,12 @@ function HomepageHeader() {
             className="button button--primary button--lg"
             to="/docs/intro">
             🚀 快速开始
+          </Link>
+          <Link
+            className="button button--secondary button--lg"
+            to="/blog"
+            style={{ marginLeft: '1rem' }}>
+            📚 动态
           </Link>
         </div>
       </div>
