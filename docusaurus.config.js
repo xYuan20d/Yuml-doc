@@ -39,7 +39,10 @@ const config = {
 
           routeBasePath: 'docs',
         },
-        blog: false,
+        blog: {
+          showReadingTime: true,
+          editUrl: 'https://github.com/xYuan20d/Yuml-doc/edit/main/blog/',
+        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -86,7 +89,7 @@ const config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/xYuan20d/Yuml', // ✅ 也是源码仓库
+              href: 'https://github.com/xYuan20d/Yuml-doc', // ✅ 也是源码仓库
             },
           ],
         },
