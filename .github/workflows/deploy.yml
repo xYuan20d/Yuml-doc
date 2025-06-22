@@ -2,17 +2,18 @@ name: Deploy Docusaurus to GitHub Pages
 
 on:
   push:
-    branches: [main]  # 当 main 分支有推送时触发
+    branches: [main]  # 当源码仓库 main 分支更新时触发
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout source code
         uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,9 +26,10 @@ jobs:
       - name: Build website
         run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to xYuan20d.github.io main branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          publish_branch: gh-pages
+          external_repository: xYuan20d/xYuan20d.github.io
+          publish_branch: main

@@ -5,18 +5,19 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  deploymentBranch: "gh-pages",
+  deploymentBranch: "main", // 你部署到 xYuan20d.github.io 的 main 分支（而不是 gh-pages）
+
   title: 'Yuml',
   tagline: '一门基于 YAML 的声明式 UI 与数据交互语言',
   favicon: 'img/logo1.png',
 
-  // ✅ 修改为你部署文档的最终访问链接（还是放在主页仓库）
+  // ✅ 设置你的最终访问网址
   url: 'https://xYuan20d.github.io',
-  baseUrl: '/', // 不变，因为你还是用 GitHub Pages 主域名部署
+  baseUrl: '/',
 
-  // ✅ 不变，部署目标是这个仓库
+  // ✅ 部署目标仓库
   organizationName: 'xYuan20d',
-  projectName: 'xYuan20d.github.io',  // 注意：这里是部署目标仓库，而不是源码仓库
+  projectName: 'xYuan20d.github.io',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -29,12 +30,12 @@ const config = {
   presets: [
     [
       'classic',
-      ({
+      {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
 
-          // ✅ 这里改为你的源码地址
-          editUrl: 'https://github.com/xYuan20d/Yuml/edit/main/',
+          // ✅ 源码地址用于“编辑此页”按钮
+          editUrl: 'https://github.com/xYuan20d/Yuml-doc/edit/main/',
 
           routeBasePath: 'docs',
         },
@@ -42,11 +43,11 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
-      }),
+      },
     ],
   ],
 
-  themeConfig: ({
+  themeConfig: {
     image: 'img/yuml-cover.jpg',
     navbar: {
       title: 'Yuml',
@@ -62,8 +63,7 @@ const config = {
           label: '文档',
         },
         {
-          // ✅ 同样改为源码地址
-          href: 'https://github.com/xYuan20d/Yuml',
+          href: 'https://github.com/xYuan20d/Yuml', // ✅ 指向源码仓库
           label: 'GitHub',
           position: 'right',
         },
@@ -85,9 +85,8 @@ const config = {
           title: '更多',
           items: [
             {
-              // ✅ 改为源码仓库
               label: 'GitHub',
-              href: 'https://github.com/xYuan20d/Yuml',
+              href: 'https://github.com/xYuan20d/Yuml', // ✅ 也是源码仓库
             },
           ],
         },
@@ -98,7 +97,7 @@ const config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-  }),
+  },
 };
 
 export default config;
