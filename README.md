@@ -1,45 +1,63 @@
-该仓库为Yuml文档的源码
+# Yuml 文档贡献指南
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-下面是原文:
+> 📘 欢迎为 [Yuml](https://github.com/xYuan20d/Yuml) 文档贡献！本指南将帮助您提交文档改进建议。
 
-# Website
+## 🛠️ 如何贡献文档
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
-
-## Installation
-
+### 1. 设置本地环境
 ```bash
+# 克隆仓库
+git clone https://github.com/xYuan20d/Yuml-docs.git
+cd Yuml-docs
+
+# 安装依赖
 yarn
-```
 
-## Local Development
-
-```bash
+# 启动本地服务器
 yarn start
 ```
+访问 http://localhost:3000 预览文档
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+### 2. 修改文档
+- 所有文档位于 `/docs` 目录
+- 使用 Markdown 语法编辑文件
+- 本地修改会实时热更新
 
-## Build
-
+### 3. 提交更改
 ```bash
-yarn build
+# 创建新分支
+git checkout -b docs/your-feature-name
+
+# 添加并提交修改
+git add .
+git commit -m "docs: 描述您的修改"
+
+# 推送到您的仓库
+git push origin docs/your-feature-name
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+### 4. 创建 Pull Request
+1. 访问 [Yuml-docs GitHub](https://github.com/xYuan20d/Yuml-docs)
+2. 点击 "New pull request"
+3. 选择您的分支
+4. 填写PR描述，说明修改内容和原因
+5. 提交等待审核
+6. 合并后会自动通过CI工作流部署到page上
 
-## Deployment
+> 🌟 感谢您的贡献！优质文档对社区至关重要。  
+> 所有被接受的PR作者将加入贡献者列表！
+## Contributors ✨
 
-Using SSH:
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
-```bash
-USE_SSH=true yarn deploy
-```
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
