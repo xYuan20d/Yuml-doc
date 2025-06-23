@@ -10,8 +10,8 @@
 ### 1. 设置本地环境
 ```bash
 # 克隆仓库
-git clone https://github.com/xYuan20d/Yuml-docs.git
-cd Yuml-docs
+git clone https://github.com/xYuan20d/Yuml-doc.git
+cd Yuml-doc
 
 # 安装依赖
 yarn
@@ -40,7 +40,7 @@ git push origin docs/your-feature-name
 ```
 
 ### 4. 创建 Pull Request
-1. 访问 [Yuml-docs GitHub](https://github.com/xYuan20d/Yuml-docs)
+1. 访问 [Yuml-doc GitHub](https://github.com/xYuan20d/Yuml-doc)
 2. 点击 "New pull request"
 3. 选择您的分支
 4. 填写PR描述，说明修改内容和原因

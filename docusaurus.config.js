@@ -117,14 +117,19 @@ const config = {
 
 config.plugins = [
   [
-    require.resolve('docusaurus-plugin-search-local'),
-    {
-      hashed: true,
-      indexDocs: true,
-      indexBlog: true,
-      indexPages: true,
-    },
-  ],
+      require.resolve('docusaurus-lunr-search'),
+      {
+        languages: ['zh', 'en'], // 支持中文 + 英文搜索
+        highlightResult: true,   // 搜索结果关键词高亮
+        maxHits: 10,             // 每次最多显示多少个搜索结果
+        indexBaseUrl: true,      // 是否索引主页路径 "/"
+        fields: {
+          title: { boost: 200 },
+          content: { boost: 2 },
+          keywords: { boost: 100 },
+        },
+      }
+  ]
 ];
 
 export default config;

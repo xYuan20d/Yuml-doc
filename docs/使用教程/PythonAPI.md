@@ -33,7 +33,7 @@ from YUML.Yuml import LoadYmlFile
 app = QApplication([])
 
 # 加载 Yuml 文件，启动应用
-LoadYmlFile("test.yaml", app)
+LoadYmlFile("main.yaml", app)
 
 app.exec()
 ```
