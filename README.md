@@ -49,9 +49,10 @@ git push origin docs/your-feature-name
 
 > 🌟 感谢您的贡献！优质文档对社区至关重要。  
 > 所有被接受的PR作者将加入贡献者列表！
-## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+## 贡献 ✨
+
+感谢所有为Yuml文档做出贡献的人:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
