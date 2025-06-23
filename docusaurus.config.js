@@ -5,17 +5,17 @@ import { themes as prismThemes } from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  deploymentBranch: "main", // 你部署到 xYuan20d.github.io 的 main 分支（而不是 gh-pages）
+  deploymentBranch: "main",
 
   title: 'Yuml',
   tagline: '一门基于 YAML 的声明式 UI 与数据交互语言',
   favicon: 'img/logo1.png',
 
-  // ✅ 设置你的最终访问网址
+  // 访问网址
   url: 'https://xYuan20d.github.io',
   baseUrl: '/',
 
-  // ✅ 部署目标仓库
+  // 目标仓库
   organizationName: 'xYuan20d',
   projectName: 'xYuan20d.github.io',
 
@@ -34,7 +34,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
 
-          // ✅ 源码地址用于“编辑此页”按钮
+          // “编辑此页”按钮
           editUrl: 'https://github.com/xYuan20d/Yuml-doc/edit/main/',
 
           routeBasePath: 'docs',
@@ -66,12 +66,12 @@ const config = {
           label: '文档',
         },
         {
-          to: '/blog',         // ✅ 博客入口路径
+          to: '/blog',         // 博客入口路径
           label: '动态',
           position: 'left',     // 显示在左边（靠近“文档”）
         },
         {
-          href: 'https://github.com/xYuan20d/Yuml', // ✅ 指向源码仓库
+          href: 'https://github.com/xYuan20d/Yuml', // 指向源码仓库
           label: 'GitHub',
           position: 'right',
         },
@@ -94,7 +94,7 @@ const config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/xYuan20d/Yuml-doc', // ✅ 也是源码仓库
+              href: 'https://github.com/xYuan20d/Yuml-doc', // 源码仓库
             },
           ],
         },
