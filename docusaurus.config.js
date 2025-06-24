@@ -105,12 +105,6 @@ const config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-    algolia: {
-      appId: 'P72X5GXE3F',
-      apiKey: '6ec715752dba601585e018a37fc94790',
-      indexName: 'xYuan20dio',
-      insights: true, // 可选
-    },
   },
   scripts: [
     {
@@ -119,17 +113,23 @@ const config = {
       defer: true,
     },
   ],
-  // 在 config 对象末尾添加：
-  headTags: [
-    {
-      tagName: 'meta',
-      attributes: {
-        name: 'algolia-site-verification',
-        content: '42BA3E63C9EB89A7',
-      },
-    },
-  ],
 };
 
+config.plugins = [
+  [
+      require.resolve('docusaurus-lunr-search'),
+      {
+        languages: ['zh', 'en'], // 支持中文 + 英文搜索
+        highlightResult: true,   // 搜索结果关键词高亮
+        maxHits: 10,             // 每次最多显示多少个搜索结果
+        indexBaseUrl: true,      // 是否索引主页路径 "/"
+        fields: {
+          title: { boost: 200 },
+          content: { boost: 2 },
+          keywords: { boost: 100 },
+        },
+      }
+  ]
+];
 
 export default config;
