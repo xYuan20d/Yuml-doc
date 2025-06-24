@@ -35,5 +35,5 @@ app = QApplication([])
 # 加载 Yuml 文件，启动应用
 LoadYmlFile("main.yaml", app)
 
-app.exec()
+# 请勿使用`app.exec()`, 可在Yuml中使用$app::run来代替!
 ```
