@@ -1,7 +1,7 @@
 ---
 id: jinja2
 title: Jinja2支持
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 在 Yuml 中，所有代码在执行前，**默认会先经过 [Jinja2](https://jinja.palletsprojects.com/) 模板引擎的预处理**，然后再进入解释器阶段执行。
