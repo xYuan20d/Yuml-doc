@@ -119,6 +119,16 @@ const config = {
       defer: true,
     },
   ],
+  // 在 config 对象末尾添加：
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'algolia-site-verification',
+        content: '42BA3E63C9EB89A7',
+      },
+    },
+  ],
 };
 
 
