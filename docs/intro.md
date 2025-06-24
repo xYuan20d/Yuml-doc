@@ -4,7 +4,7 @@ title: Yuml简介
 ---
 
 :::info 温馨提示
-Yuml 的很多机制(且兼容Python)都受到 Python 启发，如果你对 Python 有一定了解，将更容易理解 Yuml 的核心设计。
+Yuml 的很多机制都受到 Python 启发(且兼容Python)，如果你对 Python 有一定了解，将更容易理解 Yuml 的核心设计。
 
 [零基础点我👈](/docs/其他/basics)
 :::
