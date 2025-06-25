@@ -106,6 +106,8 @@ export default function CommentCard() {
               boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
               position: 'relative',
               color: isDark ? '#eee' : '#333',
+              maxHeight: '80vh',
+              overflowY: 'auto',
             }}
             onClick={(e) => e.stopPropagation()}
           >

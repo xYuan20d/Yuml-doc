@@ -18,15 +18,10 @@ function HomepageHeader() {
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">基于 YAML 的声明式 UI 与数据交互语言</p>
         <div className={styles.buttons}>
-          <Link
-            className="button button--primary button--lg"
-            to="/docs/intro">
+          <Link className="button button--primary button--lg" to="/docs/intro">
             🚀 快速开始
           </Link>
-          <Link
-            className="button button--secondary button--lg"
-            to="/blog"
-            style={{ marginLeft: '1rem' }}>
+          <Link className="button button--secondary button--lg" to="/blog" style={{ marginLeft: '1rem' }}>
             📚 动态
           </Link>
         </div>
@@ -35,113 +30,229 @@ function HomepageHeader() {
   );
 }
 
-export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
+const frostedStyle = {
+  background: 'rgba(255, 255, 255, 0.12)',
+  borderRadius: '16px',
+  padding: '2rem',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.25)',
+  backdropFilter: 'blur(10px) saturate(180%)',
+  WebkitBackdropFilter: 'blur(10px) saturate(180%)',
+  border: '1px solid rgba(255, 255, 255, 0.18)',
+  color: 'var(--ifm-font-color-base)',
+  backfaceVisibility: 'hidden',
+};
 
-  useEffect(() => {
-    fetch('https://raw.githubusercontent.com/xYuan20d/Yuml-Packages/refs/heads/main/packages.json')
-      .then((res) => res.json())
+function Card({ front, back }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const shouldIgnoreClick = (target) => {
+    return (
+      ['BUTTON', 'A', 'INPUT', 'TEXTAREA', 'SELECT', 'LABEL'].includes(target.tagName) ||
+      target.closest('button, a, input, textarea, select, label')
+    );
+  };
+
+  const handleClick = (e) => {
+    if (shouldIgnoreClick(e.target)) return;
+    setIsFlipped(!isFlipped);
+  };
+
+  return (
+    <div style={{ perspective: '1200px', marginBottom: '3rem' }}>
+      <div
+        onClick={handleClick}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={{
+          position: 'relative',
+          width: '100%',
+          minHeight: '300px',
+          transformStyle: 'preserve-3d',
+          transition: 'transform 0.8s',
+          transform: isFlipped ? 'rotateY(180deg)' : 'none',
+          cursor: 'pointer',
+        }}
+      >
+        <div style={{ ...frostedStyle }}>
+          {front}
+        </div>
+
+        <div
+          style={{
+            ...frostedStyle,
+            transform: 'rotateY(180deg)',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+          }}
+        >
+          {back}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Home() {
+  const defaultSource = 'https://raw.githubusercontent.com/xYuan20d/Yuml-Packages/refs/heads/main/packages.json';
+  const [source, setSource] = useState(defaultSource);
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const loadData = (url) => {
+    setLoading(true);
+    setMessage('加载中...');
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP 错误: ${res.status}`);
+        return res.json();
+      })
       .then((json) => {
         setData(json);
-        setLoading(false);
+        setMessage('加载成功！');
       })
       .catch((err) => {
-        console.error("加载 JSON 失败:", err);
+        console.error('加载失败：', err);
+        setMessage('加载失败，请检查链接或网络');
+      })
+      .finally(() => {
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    loadData(source);
   }, []);
 
   return (
     <Layout
       title="Yuml"
-      description="Yuml 是一门基于 YAML 的声明式 UI 与数据交互语言，支持插件化、元编程、可视化组件，适用于数据可视化与前端开发。">
-
+      description="Yuml 是一门基于 YAML 的声明式 UI 与数据交互语言，支持插件化、元编程、可视化组件，适用于数据可视化与前端开发。"
+    >
       <HomepageHeader />
-
       <main>
         <section className={styles.section}>
           <div className="container">
-            <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>🧠 Yuml 是什么？</h2>
-            <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-              <strong>Yuml</strong> 是一门面向 UI 和数据交互场景设计的声明式语言，基于 YAML 语法扩展而来，适用于构建可视化界面、数据面板、插件系统等复杂交互逻辑。
-            </p>
-            <ul>
-              <li>🧩 支持模块化、插件扩展、元素冲突检测机制</li>
-              <li>⚡ 语法极简：无需写 JavaScript 或 HTML</li>
-              <li>🪄 原生支持 Python / Lua 脚本嵌入与交互</li>
-              <li>🔁 完整控制流：支持 if / for / break / continue</li>
-              <li>🎯 事件驱动 + 数据绑定 + 模板渲染 引擎</li>
-            </ul>
 
-            <div style={{ marginTop: '3rem', textAlign: 'center' }}>
-              <h3 style={{ marginBottom: '1.5rem' }}>📦 可用的 Yuml 插件</h3>
-              {loading ? (
-                <p>加载中...</p>
-              ) : (
-                <div
-                  style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '10px',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {Object.keys(data).map((key) => (
-                    <button
-                      key={key}
-                      onClick={() => window.open(data[key].link, '_blank')}
-                      className="button button--primary button--lg"
+            {/* 简介卡片 */}
+            <Card
+              front={
+                <>
+                  <h2>🧠 Yuml 是什么？</h2>
+                  <p>
+                    <strong>Yuml</strong> 是一门基于 YAML 的声明式语言，专注 UI 和数据交互，支持模块化、脚本嵌入、控制流与事件驱动。
+                  </p>
+                  <ul>
+                    <li>🧩 插件机制与冲突检测</li>
+                    <li>⚡ 极简语法，无需 JS</li>
+                    <li>🪄 支持 Python / Lua</li>
+                    <li>🔁 完整控制流语法</li>
+                    <li>🎯 数据绑定 & 模板渲染</li>
+                  </ul>
+                </>
+              }
+              back={
+                <>
+                <h2>
+                  没啦~
+                </h2>
+                </>
+              }
+            />
+
+            {/* 插件列表卡片 */}
+            <Card
+              front={
+                <>
+                  <h3 style={{ textAlign: 'center' }}>📦 可用的 Yuml 插件</h3>
+                  {loading ? (
+                    <p style={{ textAlign: 'center' }}>{message}</p>
+                  ) : (
+                    <div
                       style={{
-                        width: '300px',
-                        textAlign: 'left',
-                        padding: '1rem 1.5rem',
-                        whiteSpace: 'normal',
-                        lineHeight: '1.4',
-                        cursor: 'pointer',
                         display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
+                        flexWrap: 'wrap',
+                        gap: '10px',
+                        justifyContent: 'center',
                       }}
                     >
-                      <div>
-                        <div style={{ fontSize: '1.25rem', fontWeight: '600' }}>{key}</div>
-                        <div style={{ fontSize: '0.85rem', marginTop: '0.25rem', color: 'inherit', opacity: 0.85 }}>
-                          {data[key].info}
-                        </div>
-                      </div>
-
-                      <div
-                        style={{
-                          marginTop: '0.8rem',
-                          display: 'flex',
-                          flexWrap: 'wrap',
-                          gap: '6px',
-                        }}
-                      >
-                        {(data[key].authors || []).map((author, idx) => (
-                          <span
-                            key={idx}
-                            style={{
-                              backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                              color: 'inherit',
-                              padding: '2px 8px',
-                              fontSize: '0.75rem',
-                              borderRadius: '12px',
-                              userSelect: 'none',
-                              whiteSpace: 'nowrap',
-                            }}
-                          >
-                            {author}
-                          </span>
-                        ))}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+                      {Object.keys(data).map((key) => (
+                        <button
+                          key={key}
+                          onClick={() => window.open(data[key].link, '_blank')}
+                          className="button button--primary button--lg"
+                          style={{
+                            width: '300px',
+                            textAlign: 'left',
+                            padding: '1rem 1.5rem',
+                            whiteSpace: 'normal',
+                            lineHeight: '1.4',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                          }}
+                        >
+                          <div>
+                            <div style={{ fontSize: '1.25rem', fontWeight: '600' }}>{key}</div>
+                            <div style={{ fontSize: '0.85rem', opacity: 0.85 }}>
+                              {data[key].info}
+                            </div>
+                          </div>
+                          <div style={{ marginTop: '0.8rem', display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                            {(data[key].authors || []).map((author, idx) => (
+                              <span
+                                key={idx}
+                                style={{
+                                  backgroundColor: 'rgba(255,255,255,0.3)',
+                                  borderRadius: '12px',
+                                  padding: '2px 8px',
+                                  fontSize: '0.75rem',
+                                  userSelect: 'none',
+                                }}
+                              >
+                                {author}
+                              </span>
+                            ))}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </>
+              }
+              back={
+                <>
+                  <h3 style={{ textAlign: 'center', marginBottom: '1rem' }}>🛠 更换插件源</h3>
+                  <input
+                    type="text"
+                    value={source}
+                    onChange={(e) => setSource(e.target.value)}
+                    placeholder="输入 JSON 数据地址"
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      borderRadius: '8px',
+                      border: '1px solid #ccc',
+                      fontSize: '1rem',
+                      marginBottom: '1rem',
+                    }}
+                  />
+                  <button
+                    className="button button--primary button--lg"
+                    onClick={() => loadData(source.trim())}
+                    disabled={loading}
+                    style={{ width: '100%' }}
+                  >
+                    🔄 重新加载
+                  </button>
+                  <p style={{ marginTop: '1rem', textAlign: 'center' }}>{message}</p>
+                </>
+              }
+            />
           </div>
         </section>
       </main>
