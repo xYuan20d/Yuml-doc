@@ -60,3 +60,4 @@ Yuml 引入了**编译执行机制 + 惰性加载特性**，带来飞跃式的�
 run:
   \>hello_world: "Hello World!"
   LOG: "{< hello_world >}"  # 输出Hello World!
+```
