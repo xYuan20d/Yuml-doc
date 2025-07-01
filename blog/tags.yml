@@ -17,3 +17,8 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+Yuml:
+  label: Yuml
+  permalink: /Yuml
+  description: 欢迎来到Yuml标签
